@@ -1,0 +1,10 @@
+Z => Z not := fn(Z x)-> if( lt(x)(0), 0, 1);
+Z => Z => Z or := fn(Z x)-> fn(Z y)-> if(lt(x)(0), 1, if(lt(y)(0), 1, 0));
+
+Z => Z => Z de_morgan1 :=  fn(Z x)-> fn(Z y)-> or(not(x))(not(y));
+Z => Z => Z de_morgan2 :=  fn(Z x)-> fn(Z y)-> not(or(x)(y));
+
+Z => Z => Z add := fn(Z x)-> fn(Z y)-> sub( sub(y)(0) )(x);
+Z => Z abs  := fn(Z x)-> if(lt(x)(0), x, sub(x)(sub(x)(x)));
+Z => Z succ := fn(Z x)-> abs(add(x)(1));
+
