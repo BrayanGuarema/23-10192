@@ -1,0 +1,22 @@
+sys.reset();
+Z => Z => Z ne   := fn(Z x)-> fn(Z y)-> if( lt(x)(y), 1, if(lt(y)(x), 1, 0) );
+Z => Z sgn  := fn(Z x)-> if(lt(x)(0), 1, if(lt(0)(x), -1, 0) );
+Z => Z abs  := fn(Z x)-> if(lt(x)(0), x, sub(x)(sub(x)(x)));
+
+Z => Z => Z add := fn(Z x)-> fn(Z y)-> sub( sub(y)(0) )(x);
+Z => Z => Z multP := fn(Z x)-> fn(Z y)-> if( lt(y)(0), add(x)( multP(x)(sub(1)(y))), 0);
+
+Z => Z => Z eq := fn(Z x)-> fn(Z y)-> if(ne(x)(y), 0, 1);
+Z => Z => Z or := fn(Z x)-> fn(Z y)-> if(lt(x)(0), 1, if(lt(y)(0), 1, 0));
+Z => Z => Z and := fn(Z x)-> fn(Z y)-> if(or(eq(x)(0))(eq(y)(0)), 0, 1);
+
+Z => Z => Z cond1 := fn(Z x)-> fn(Z y)-> and(eq(sgn(x))(-1))(eq(sgn(y))(-1));
+Z => Z => Z tru := fn(Z x)-> fn(Z y)->multP(abs(x))(abs(y));
+Z => Z cond2 := fn(Z y)-> or(eq(0)(sgn(y)))(eq(1)(sgn(y))); sub()()
+Z => Z =>Z fail:=fn(Z x)->fn(Z y)->if(cond2(y),multP(x)(y),multP(sub(x)(0))(sub(y)(0)));
+Z => Z => Z mul := fn(Z x)-> fn(Z y)-> if(cond1(x)(y), tru(x)(y), fail(x)(y));
+Z => Z => Z mult := fn(Z x)-> fn(Z y)->  if( lt(abs(x))(abs(y)), mul(x)(y), mul(y)(x));
+
+-- 2. La multiplicación es conmutativa:
+-- El codigo se multiplica dependiendo si el multiplicando es mayor al multiplicador.
+-- ejemplo: es mas rapido 100*2 = 100 + 100 que sumar cien veces 2.
