@@ -1,0 +1,2 @@
+Primer prompt: aplica lo que esta en Macondian II.md en Macondian
+Segundo prompt: haz pruebas unitarios con las modificaciones hechas
