@@ -1,0 +1,30 @@
+# Reporte de Macondian
+
+## Modelos utilizados
+
+- OpenAI GPT-5 (modelo de asistencia, versión no específica del entorno de trabajo) 
+- GitHub Copilot (MAI-Code-1.1-Flash)
+
+
+# Algoritmo de Procesamento de los Datos de los Sensores
+
+Paso 1. El sistema recibe un flujo continuo de información, organizado en lotes de sensores. 
+Cada lote trae un montón de lecturas de microsensores, como si fueran datos que llegan uno tras otro sin parar.
+
+Paso 2. Lo primero que hace el worker es tomar cada mensaje y meterlo en una estructura clara, 
+con el número del lote, el ID del sensor, el modelo que usa y, todas las lecturas que vienen con él.
+
+Paso 3. Con esos datos en orden, el algoritmo calcula la mediana de las lecturas. 
+
+Paso 4.1. Luego, aplica una regla de tolerancia (algo así como un 8%) para descartar los valores que se salen 
+demasiado de lo normal, como esos outliers que aparecen cuando un sensor se pone raro. Pero si el filtro elimina demasiados 
+datos, no se va a arriesgar. 
+
+Paso 4.2. El sistema tiene una seguridad: si detecta que está eliminando por demasiado, deja todo como está. 
+No arriesga el análisis por un filtro demasiado estricto.
+
+Paso 5. Una vez que ya tiene un conjunto limpio, saca el promedio de las lecturas restantes. 
+Ese promedio se convierte en lo que llamamos la “lectura Macondiana” del sensor.
+
+Paso 6. Se aplica la misma lógica a todo el lote, combinando los sensores. 
+Se hace el mismo proceso de mediana y promedio, pero ahora en conjunto.
