@@ -1,0 +1,5 @@
+::zilly+
+Z => Z abs := fn(Z x) -> if(x < 0, 0 - x, x);
+Z => Z => Z mod_pos := fn(Z x) -> fn(Z y) -> if(y = 0, x, if(x < y, x, mod_pos(x - y)(y)));
+Z => Z => Z mod := fn(Z x) -> fn(Z y) -> if(x < 0, 0 - mod_pos(abs(x))(abs(y)), mod_pos(abs(x))(abs(y)));
+Z => Z => Z gcd := fn(Z x) -> fn(Z y) -> if(y = 0, abs(x), gcd(y)(mod(x)(y)));

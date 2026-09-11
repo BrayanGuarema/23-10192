@@ -1,0 +1,23 @@
+::zilly+
+
+Z => Z => Z add := fn(Z x)-> fn(Z y)-> sub( sub(y)(0) )(x);
+Z => Z abs  := fn(Z x)-> if(lt(x)(0), x, sub(x)(sub(x)(x)));
+Z => Z => Z eq   := fn(Z x)-> fn(Z y)-> if( lt(x)(y), 0, if(lt(y)(x), 0, 1) );
+
+# 1. Casos Base y Triviales (Números Primos entre sí)
+if(eq(gcd(13)(7))(1),1,0)
+
+# 2. Uno de los números es Múltiplo del otro
+if(eq(gcd(48)(12))(12),1,0)
+
+# 3. Cero como Entrada (Límite matemático)
+if(eq(gcd(0)(25))(25),1,0)
+
+# 4. Entradas Identicas
+if(eq(gcd(42)(42))(42),1,0)
+
+# 5. Números Negativos (un solo número es Negativo)
+if(eq(gcd(-48)(18))(6),1,0)
+
+# 6. Números Negativos (ambos números son negativos)
+if(eq(gcd(-48)(-18))(6),1,0)
