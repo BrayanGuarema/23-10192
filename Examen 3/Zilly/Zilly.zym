@@ -1,0 +1,19 @@
+
+::zilly+
+
+# Parte 1
+
+Z => Z fibo := fn(Z n) => Z -> if(n < 2, n, fibo(n - 1) + fibo(n - 2));
+Z => Z sfib := fn(Z n) => Z -> if(0 < n, fibo(n) + sfib(n-1), 0);
+
+# Parte 2
+Z => Z zfib := fn(Z n) => Z -> fibo(n + 2) - 1;
+
+# Parte 3
+si, pero depende: 
+si n > 2, entonces zfib es mas rapido porque zfib solo calcula un fibonacci y una operacion aritmetica y sfib calcula varios fibonacci, en sfib el tiempo crece exponencialmente.
+si n = 2, entonces zfib y sfib son igual.
+si n < 2, entonces sfib es mas rapido que zfib.
+
+Conclusion:
+Como zfib abarca una mayor cantidad de datos que sfib, entonces zfib es mas rapido que sfib
